@@ -35,7 +35,7 @@ process repeatmodeler_model {
 
 }
 
-process repeatmasker_mask {
+process repeatmasker_mask_denovo {
 
     publishDir "${params.outdir}/RepeatMasker", mode:'copy'
     cache 'lenient'
@@ -45,17 +45,52 @@ process repeatmasker_mask {
     path replib
     
     output:
-    path "*.tbl"
-    path "*.cat.gz"
-    path "*.masked"
-    path "*.fna.out"
-    path "*.gff"
+    path "denovo"
 
     script:
     """
-    RepeatMasker -pa 8 -e ncbi -dir . -gff -xsmall -nolow -u -lib ${replib} ${assembly}
+    RepeatMasker -pa ${task.cpus} -e ncbi -dir denovo -gff -xsmall -nolow -u -lib ${replib} ${assembly}
     """
 
 }
 
 
+process repeatmasker_mask_taxon {
+
+    publishDir "${params.outdir}/RepeatMasker", mode:'copy'
+    cache 'lenient'
+
+    input:
+    path assembly
+    val taxon
+    
+    output:
+    path "taxon"
+    path "taxon/*masked"
+
+    script:
+    """
+    RepeatMasker -pa ${task.cpus} -e ncbi -dir taxon -gff -u -species ${taxon} ${assembly}
+    """
+
+}
+
+process repeatmasker_process_repeats {
+
+    publishDir "${params.outdir}/RepeatMasker", mode:'copy'
+    cache 'lenient'
+
+    input:
+    path denovoreps
+    path taxonreps
+    
+    // output:
+    // path "dunno_yet.txt"
+
+    script:
+    """
+    cat ${denovoreps}/*cat* ${taxonreps}/*cat* >all.cat
+    ProcessRepeats -nolow -gff all.cat
+    """
+
+}

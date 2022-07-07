@@ -12,7 +12,7 @@ process shasta {
     path fasta
 
     output:
-    path "assembly"
+    path "assembly/Assembly.fasta"
 
     script:
     """
@@ -44,7 +44,7 @@ process medaka_polish {
     """
     medaka_consensus \
     -i ${fasta} \
-    -d ${assembly_initial}/Assembly.fasta \
+    -d ${assembly_initial} \
     -o assembly_polished \
     -t ${task.cpus} \
     -m ${medaka_model}
@@ -73,7 +73,7 @@ process busco_initial {
     echo \$AUGUSTUS_CONFIG_PATH
 
     busco \
-	-i ${assembly_initial}/Assembly.fasta \
+	-i ${assembly_initial} \
 	-o busco_initial \
 	-l ${busco_db} \
 	-c ${task.cpus} \
