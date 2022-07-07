@@ -10,10 +10,10 @@
     // should add a step to assembly pipeline to generate fasta from fastq instead of requiring both. 
 
 
-include { main_workflow } from './workflows/main_workflow.nf'
+include { main_workflow as MAIN } from './workflows/main_workflow.nf'
 
 workflow {
 
-    main_workflow()
+    MAIN()
 
     }
