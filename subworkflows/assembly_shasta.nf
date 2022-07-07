@@ -7,7 +7,7 @@ include { busco_polished;   } from '../modules/tasks_assembly.nf'
 include { quast_polished;   } from '../modules/tasks_assembly.nf'
 
 
-workflow assembly {
+workflow assembly_shasta {
     take:
         fasta
         medaka_model
