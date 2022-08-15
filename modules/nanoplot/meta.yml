@@ -1,0 +1,21 @@
+name: nanoplot
+description: Run nanoplot on ONT reads
+tools:
+  - nanoplot:
+      description: |
+        NanoPlot produces basic quality reports for ONT data.
+      homepage: https://github.com/wdecoster/NanoPlot
+      documentation: https://github.com/wdecoster/NanoPlot
+      licence: ["GPL-3.0"]
+input:
+  - fastq:
+      type: path
+      description: |
+        a fastq file
+output:
+  - results:
+      type: path
+      description: |
+        a directory containing all NanoPlot output
+authors:
+  - "@nreid"
