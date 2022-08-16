@@ -1,8 +1,3 @@
- /* 
- * pipeline processes
- */
- 
-
 process shasta {
 
     publishDir "${params.outdir}/assembly_initial", mode:'copy'
@@ -26,6 +21,4 @@ process shasta {
     --Assembly.detangleMethod 1
     """
 }
-
-
 
