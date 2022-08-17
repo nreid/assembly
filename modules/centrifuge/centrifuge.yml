@@ -1,0 +1,34 @@
+name: centrifuge
+description: Run centrifuge on sequence reads to identify potential contaminants
+tools:
+  - centrifuge:
+      description: |
+        centrifuge is a metagenomic classifier. 
+      homepage: https://ccb.jhu.edu/software/centrifuge/manual.shtml
+      documentation: https://ccb.jhu.edu/software/centrifuge/manual.shtml
+      licence: ["GPL-3"]
+input:
+  - fastq:
+      type: file
+      description: |
+        fastq file
+  - centrifugedb:
+      type: file
+      description: |
+        a centrifuge database containing sequences to be classified against
+output:
+  - classifications:
+      type: file
+      description: |
+      the classification of each sequence in the fastq file, tab separated file
+  - report:
+      type: file
+      description: summary of classfications
+  - sequencelist:
+      type: file
+      description: list of unclassified (non-contaminant) sequences
+  - percentretained:
+      type: value
+      description: the percentage of sequences that were unclassified
+authors:
+  - "Noah Reid"

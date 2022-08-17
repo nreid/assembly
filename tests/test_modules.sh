@@ -11,3 +11,10 @@ nextflow run \
     -entry CENTRIFUGE_FUNDULUS \
     -c ../nf_assembly/tests/nextflow.config \
     --outdir 'testresults/centrifuge_fundulus'
+
+# test centrifuge_filter
+nextflow run \
+    ../nf_assembly/tests/modules/centrifuge/main.nf \
+    -entry CENTRIFUGE_FILTER_FUNDULUS \
+    -c ../nf_assembly/tests/nextflow.config \
+    --outdir 'testresults/centrifuge_filter_fundulus'

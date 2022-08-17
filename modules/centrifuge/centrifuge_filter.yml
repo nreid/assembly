@@ -1,0 +1,25 @@
+name: centrifuge
+description: Run centrifuge on sequence reads to identify potential contaminants
+tools:
+  - seqtk:
+      description: |
+        a package for simple sequence manipulations. 
+      homepage: https://github.com/lh3/seqtk
+      documentation: https://github.com/lh3/seqtk
+      licence: ["MIT"]
+input:
+  - fastq:
+      type: file
+      description: |
+        fastq file
+  - sequencenames:
+      type: file
+      description: |
+        a list (one per line) of sequence names to be retained. unclassified sequences from centrifuge
+output:
+  - fastq:
+      type: file
+      description: |
+      a fastq file with sequences classified by centrifuge removed
+authors:
+  - "Noah Reid"

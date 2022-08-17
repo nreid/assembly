@@ -1,0 +1,29 @@
+name: longread_qc
+description: run nanoplot, centrifuge, and remove contaminant sequences
+tools:
+  - centrifuge:
+      description: |
+        workflow module. see documentation. 
+  - centrifuge_filter:
+      description: |
+        workflow module. see documentation. 
+  - nanoplot: 
+      description: |
+        workflow module. see documentation. 
+input:
+  - fastq:
+      type: file
+      description: |
+        fastq file
+  - centrifugedb:
+      type: file or boolean
+      description: |
+        a centrifuge database containing sequences to be classified against
+        OR the value `false` indicating that centrifuge should not be run. 
+output:
+  - fastq_out:
+    type: file
+    description: |
+      a fastq file, either filtered by centrifuge classification, or not, depending on centrifugedb input parameter
+authors:
+  - "Noah Reid"
